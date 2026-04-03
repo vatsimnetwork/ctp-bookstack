@@ -17,12 +17,11 @@
                 @include('form.checkbox', ['name' => 'mfa_enforced', 'label' => trans('settings.role_mfa_enforced'), 'model' => $role ])
             </div>
 
-            @if(in_array(config('auth.method'), ['ldap', 'saml2', 'oidc']))
-                <div class="form-group">
-                    <label for="name">{{ trans('settings.role_external_auth_id') }}</label>
-                    @include('form.text', ['name' => 'external_auth_id', 'model' => $role])
-                </div>
-            @endif
+            <div class="form-group">
+                <label for="name">{{ trans('settings.role_external_auth_id') }}</label>
+                @include('form.text', ['name' => 'external_auth_id', 'model' => $role])
+                <p class="small text-muted">{{ trans('settings.role_external_auth_id_desc') }}</p>
+            </div>
         </div>
     </div>
 
