@@ -185,6 +185,7 @@ return [
     'role_desc' => 'Short Description of Role',
     'role_mfa_enforced' => 'Requires Multi-Factor Authentication',
     'role_external_auth_id' => 'External Authentication IDs',
+    'role_external_auth_id_desc' => 'Enter the external SSO role identifier (for example: administrator). Users with that SSO role will receive this BookStack role on login.',
     'role_system' => 'System Permissions',
     'role_manage_users' => 'Manage users',
     'role_manage_roles' => 'Manage roles & role permissions',

@@ -31,6 +31,7 @@ class Kernel extends HttpKernel
             \BookStack\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \BookStack\Http\Middleware\StartSessionExtended::class,
+            \BookStack\Http\Middleware\ctp_sso::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \BookStack\Http\Middleware\VerifyCsrfToken::class,
             \BookStack\Http\Middleware\CheckEmailConfirmed::class,
@@ -52,11 +53,12 @@ class Kernel extends HttpKernel
      * @var array<string, class-string>
      */
     protected $middlewareAliases = [
-        'auth'       => \BookStack\Http\Middleware\Authenticate::class,
+        'auth'       => \BookStack\Http\Middleware\ctp_sso::class,
         'can'        => \BookStack\Http\Middleware\CheckUserHasPermission::class,
         'guest'      => \BookStack\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'guard'      => \BookStack\Http\Middleware\CheckGuard::class,
         'mfa-setup'  => \BookStack\Http\Middleware\AuthenticatedOrPendingMfa::class,
+        'ctp_sso'    => \BookStack\Http\Middleware\ctp_sso::class,
     ];
 }

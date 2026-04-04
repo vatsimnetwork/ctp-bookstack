@@ -138,4 +138,10 @@ return [
         'thumbnail_attribute'    => env('LDAP_THUMBNAIL_ATTRIBUTE', null),
     ],
 
+    'ctp_sso' => [
+        'auth_url'          => env('CTP_AUTH_URL', ''),
+        'auth_public_url'   => env('CTP_AUTH_PUBLIC_URL', ''),
+        'internal_api_key'  => env('CTP_INTERNAL_API_KEY', ''),
+    ],
+
 ];

@@ -95,7 +95,23 @@ class LoginController extends Controller
      */
     public function logout()
     {
-        return redirect($this->loginService->logout());
+        $localRedirectPath = $this->loginService->logout();
+
+        $authUrl = trim((string) config('services.ctp_sso.auth_public_url', ''));
+        if ($authUrl === '') {
+            $authUrl = trim((string) config('services.ctp_sso.auth_url', ''));
+        }
+        $authUrl = rtrim($authUrl, '/');
+        if ($authUrl !== '') {
+            if (!str_starts_with($authUrl, 'http://') && !str_starts_with($authUrl, 'https://')) {
+                $authUrl = 'http://' . $authUrl;
+            }
+
+            $logoutUrl = $authUrl . '/auth/logout/?return_to=' . urlencode(url('/login'));
+            return redirect()->away($logoutUrl, 307);
+        }
+
+        return redirect($localRedirectPath);
     }
 
     /**
