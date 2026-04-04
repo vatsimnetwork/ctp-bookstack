@@ -53,7 +53,7 @@ class ctp_sso
         }
 
         $isSessionValid = $request->attributes->get('is_session_valid', false);
-        if (!$isSessionValid && !$request->is([
+        if (!$isSessionValid && !$this->allowsGuestPublicAccess($request) && !$request->is([
             'status',
             'robots.txt',
             'favicon.ico',
@@ -67,6 +67,24 @@ class ctp_sso
         }
 
         return $next($request);
+    }
+
+    protected function allowsGuestPublicAccess(Request $request): bool
+    {
+        if (!setting('app-public', false)) {
+            return false;
+        }
+
+        if (!$request->isMethodSafe()) {
+            return false;
+        }
+
+        return $request->is([
+            '/',
+            'home',
+            'books',
+            'books/*',
+        ]);
     }
 
     protected function redirectToExternalAuth(Request $request)
