@@ -17,7 +17,7 @@ FROM composer:2 AS composer-builder
 
 WORKDIR /src
 COPY . .
-RUN composer install --no-dev --no-interaction --optimize-autoloader
+RUN composer install --no-dev --no-interaction --optimize-autoloader --ignore-platform-reqs
 
 # Stage 3: final image using the linuxserver base
 FROM ghcr.io/linuxserver/baseimage-alpine-nginx:3.23
