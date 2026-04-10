@@ -67,7 +67,7 @@ RUN \
     $HOME/.cache
 
 # Copy s6-overlay service definitions and init scripts
-COPY docker/root/ /
+COPY docker/ /
 
 EXPOSE 80 443
 VOLUME /config
