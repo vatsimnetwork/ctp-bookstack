@@ -1,0 +1,10 @@
+.git
+node_modules
+vendor
+dev
+docker-compose.yml
+public/dist
+storage/framework
+storage/logs
+storage/backups
+public/uploads
