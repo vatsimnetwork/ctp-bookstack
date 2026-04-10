@@ -1,7 +1,11 @@
 .git
 node_modules
 vendor
-dev
+dev/api
+dev/checksums
+dev/docker
+dev/docs
+dev/licensing
 docker-compose.yml
 public/dist
 storage/framework
