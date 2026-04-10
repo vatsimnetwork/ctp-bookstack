@@ -73,6 +73,11 @@ RUN \
 
 # Copy s6-overlay service definitions and init scripts
 COPY docker/ /
+RUN chmod +x /init-hook /migrations/02-default-location \
+    /etc/s6-overlay/s6-rc.d/init-bookstack-config/run \
+    /etc/s6-overlay/s6-rc.d/svc-memcached/run \
+    /etc/s6-overlay/s6-rc.d/svc-queue-worker/run \
+    /appkey
 
 EXPOSE 80 443
 VOLUME /config
