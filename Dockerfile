@@ -17,7 +17,8 @@ FROM composer:2 AS composer-builder
 
 WORKDIR /src
 COPY . .
-RUN mkdir -p bootstrap/cache && composer install --no-dev --no-interaction --optimize-autoloader --ignore-platform-reqs
+RUN mkdir -p bootstrap/cache storage/framework/{views,cache,sessions} storage/logs && \
+    composer install --no-dev --no-interaction --optimize-autoloader --ignore-platform-reqs
 
 # Stage 3: final image using the linuxserver base
 FROM ghcr.io/linuxserver/baseimage-alpine-nginx:3.23
