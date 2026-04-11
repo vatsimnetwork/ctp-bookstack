@@ -204,7 +204,7 @@ class ctp_sso
 
         $hasExternalEmail = !empty($email);
         $resolvedEmail = $hasExternalEmail ? $email : ($cid . '@ctp.local');
-        $resolvedName = !empty($cid) ? $cid : ('CTP User ' . ($email ?: 'Unknown'));
+        $resolvedName = !empty($name) ? $name : (!empty($cid) ? ('CTP ' . $cid) : ('CTP User ' . ($email ?: 'Unknown')));
 
         /** @var User|null $currentUser */
         $currentUser = Auth::user();
