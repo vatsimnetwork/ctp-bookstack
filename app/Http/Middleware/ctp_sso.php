@@ -229,6 +229,7 @@ class ctp_sso
             $user->password = Str::random(32);
             $user->external_auth_id = $cid ?: null;
             $user->email_confirmed = true;
+            $user->slug = $this->generateUniqueSlug($resolvedName, $cid);
             $user->save();
             $user->attachDefaultRole();
         } else {
@@ -291,6 +292,16 @@ class ctp_sso
         }
 
         return array_values(array_unique($roleIds));
+    }
+
+    protected function generateUniqueSlug(string $name, string $cid): string
+    {
+        $slug = Str::slug($name);
+        if ($slug === '') {
+            $slug = 'ctp-user-' . ($cid ?: Str::random(8));
+        }
+
+        return $slug;
     }
 
 }
