@@ -291,6 +291,11 @@ class ctp_sso
             }
         }
 
+        $viewerRole = Role::getSystemRole('viewer') ?: Role::getRole('viewer');
+        if ($viewerRole) {
+            $roleIds[] = $viewerRole->id;
+        }
+
         return array_values(array_unique($roleIds));
     }
 
